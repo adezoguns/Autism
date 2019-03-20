@@ -370,7 +370,7 @@ def csv_arr(datasetPath):
     return results  
 
 ##################################################################################################
-def Array_of_estimator(num_of_model):
+def array_of_estimator(num_of_model):
     
     
     dataframe = pd.read_csv("/home/deola/Downloads/new_fuzzy/Dataset/mydata1_CKD.csv")
@@ -535,7 +535,7 @@ def wang_tree(pathTrain, pathTest, tree_depth, num_of_class, num_of_tree):
     else:
         allArr1=final_result
         
-    pred2=ensemble_pred(allArr1)
+    pred2=ensemble_pred(allArr1)Change the method in the code
     
     
     accuracy2 = accuracy_score(y_test, pred2)
