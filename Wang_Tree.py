@@ -38,7 +38,7 @@ dataset2=[[1,0,1],
           [1,3,0],
           [0,1,1]]
 #########################################################################################################
-def MedianFinder(dataset):
+def median_finder(dataset):
     
     '''Finding the median of a column of a dataset
      and insert it in an array
@@ -57,7 +57,7 @@ def MedianFinder(dataset):
     return median   
 ##############################################################################################
 
-def MeanFinder(dataset):
+def mean_finder(dataset):
     
     
     '''Finding the mean of a column of a dataset
@@ -75,7 +75,7 @@ def MeanFinder(dataset):
     return mean
      
 ############################################################################################################
-def Part_By_Mean(dataset, pos):
+def part_by_mean(dataset, pos):
     '''Partition the dataset by comparing the element with
      the calculated median from the function MedianFinder(dataset)
      if the element of a particilar column is lesser than the calculated 
@@ -83,7 +83,7 @@ def Part_By_Mean(dataset, pos):
      returning the array in left and right'''
     
     left, right, mean=list(),list(),list()
-    mean=MeanFinder(dataset)
+    mean=mean_finder(dataset)
     #print mean
     for row in dataset:
         if (row[pos] ==0 or row[pos] < mean[pos]):
@@ -101,7 +101,7 @@ counter=0
 mydict=dict() 
 result = {}
 
-def DIVIDE_RECUR(arr, num):
+def divide_recur(arr, num):
     '''The recursive partition of dataset in solution space
     and stored in a dictionary labelled with a particular name as left:0 or right:0'''
     
@@ -114,12 +114,12 @@ def DIVIDE_RECUR(arr, num):
     else:
         if (len(arr)!=0):
             for i in range(0,len(arr[0])-1):
-                first, second=Part_By_Mean(arr, i)
+                first, second=part_by_mean(arr, i)
                 counter+=1
                 mydict["left:"+str(counter-1)]=first
                 mydict["right:"+str(counter-1)]=second
-                DIVIDE_RECUR(first, num-1)
-                DIVIDE_RECUR(second, num-1)   
+                divide_recurr(first, num-1)
+                divide_recurr(second, num-1)
                 
 #    for key,value in mydict.items():
 #        if value not in result.values():
@@ -136,7 +136,7 @@ mydict2=dict()
 mydict3=dict()
 result = {}
 
-def DIVIDE_RECUR2(arr, num):
+def divide_recur2(arr, num)
     '''The recursive partition of dataset in solution space
     and stored in a dictionary labelled with a particular name as left:0 or right:0'''
     
@@ -146,7 +146,7 @@ def DIVIDE_RECUR2(arr, num):
     
     if (len(arr)!=0):
         for i in range(0,len(arr[0])-1):
-            first, second=Part_By_Mean(arr, i)
+            first, second=part_by_mean(arr, i)
             counter+=1
             mydict["left:"+str(counter-1)]=first
             mydict["right:"+str(counter-1)]=second
@@ -161,7 +161,7 @@ def DIVIDE_RECUR2(arr, num):
             
             for n in mydict.keys():
                 for i in range(0,len(arr[0])-1):
-                    first, second=Part_By_Mean(mydict[str(n)],i)
+                    first, second=part_by_mean(mydict[str(n)],i)
                     counter+=1
                     mydict2["left:"+str(counter-1)]=first
                     mydict2["right:"+str(counter-1)]=second
@@ -175,14 +175,14 @@ def DIVIDE_RECUR2(arr, num):
             #return mydict
             for n in mydict.keys():
                 for i in range(0,len(arr[0])-1):
-                    first, second=Part_By_Mean(mydict[str(n)],i)
+                    first, second=part_by_mean(mydict[str(n)],i)
                     counter+=1
                     mydict2["left:"+str(counter-1)]=first
                     mydict2["right:"+str(counter-1)]=second
              
             for n in mydict2.keys():    
                 for i in range(0,len(arr[0])-1):
-                    first, second=Part_By_Mean(mydict2[str(n)],i)
+                    first, second=part_by_mean(mydict2[str(n)],i)
                     counter+=1
                     mydict3["left:"+str(counter-1)]=first
                     mydict3["right:"+str(counter-1)]=second
@@ -191,7 +191,7 @@ def DIVIDE_RECUR2(arr, num):
             return mydict3
     #mydict=dict() 
 ##############################################################################################
-def SeperateDataIntoOne_Zero(dataset):
+def seperate_data_into_one_zero(dataset):
     '''Function to count the number of ones and zeros
     in the dataset'''
     
@@ -227,7 +227,7 @@ def accuracy_metric(real, pred):
             result += 1
     print str(result / float(len(real)) * 100.0)+'%'
 #####################################################################################################
-def LogModel(mydict, num_col):
+def log_model(mydict, num_col):
 
     for k in mydict:
         print k
@@ -303,7 +303,7 @@ def logistic_function_cv(X, y):
     return cv_results.mean()*100
 
 ########################################################################################################
-def Plot_Log_function(X,y,k):
+def plot_log_function(X,y,k):
     '''Function plots semilog graph of
     the models, showing std'''
     
@@ -333,7 +333,7 @@ def Plot_Log_function(X,y,k):
     plt.ylim(0.3, 1.1)
     plt.savefig("/home/deola/Documents/Autism/kfold/cross_val_%s.eps"%(str(k)), format="eps", dpi=300)
 ############################################################################################################
-def CSV_ARR(datasetPath):
+def csv_arr(datasetPath):
     '''Function converts CSV to array in array
     for the dataset'''
     
@@ -349,7 +349,7 @@ def CSV_ARR(datasetPath):
     return results  
 
 ##################################################################################################
-def Array_of_estimator(num_of_model):
+def array_of_estimator(num_of_model):
     
     
     dataframe = pd.read_csv("/home/deola/Downloads/new_fuzzy/Dataset/mydata1_CKD.csv")
@@ -358,7 +358,7 @@ def Array_of_estimator(num_of_model):
     Y = array[:,24]
     #count=0
     models,result, Tup=list(), list(), list()
-   
+   Change the method in the code
     for i in range (0,num_of_model):
         
         models.append(("lg"+str(i),LogisticRegression()))
@@ -369,8 +369,8 @@ def Array_of_estimator(num_of_model):
 
 ###############################################################################################    
 arr1=[[1,0,0,0,1,1,1,1,1,1,1,1,1,0],[1,0,0,0,0,0,0,1,1,1,1,1,1,0],[0,0,0,0,1,0,1,0,1,0,1,0,1,0]]
-
-def Ensemble_Pred(arr):
+Change the method in the code
+def ensemble_pred(arr):
     '''Function to combine ensembles together.
     The array will be an array in array on predictions
     The majority class will be returned in and array'''
@@ -396,7 +396,7 @@ def Ensemble_Pred(arr):
     return result                  
           
 #############################################################################################################
-def WangTree(pathTrain, pathTest, tree_depth, num_of_class, min_acc):
+def wang_tree(pathTrain, pathTest, tree_depth, num_of_class, min_acc):
     '''The tree partitioning function to create different models
     for our logistic regression function
     PathTrain: The path to train the csv for the dataset.
@@ -407,7 +407,7 @@ def WangTree(pathTrain, pathTest, tree_depth, num_of_class, min_acc):
     discriminate  models lesser than 50.
     '''
         
-    arr_gameTrain=CSV_ARR(pathTrain)
+    arr_gameTrain=csv_arr(pathTrain)
     #arr_gameTrain=shuffle(arr_gameTrain)
     #arr_gameTest=CSV_ARR(pathTest)
     testSet=pd.read_csv(pathTest)
@@ -416,7 +416,7 @@ def WangTree(pathTrain, pathTest, tree_depth, num_of_class, min_acc):
     y_test=testSet.values[:,col-1]
     print ("#######################################vvvv####")
     print ("#############################Jozi_Jozi##########")   
-    mydict= DIVIDE_RECUR2(arr_gameTrain, tree_depth)
+    mydict= divide_recur2(Train, tree_depth)
     #for key, value in mydict.items():
         #print key, len(value)
     print ("################################################")
@@ -427,7 +427,7 @@ def WangTree(pathTrain, pathTest, tree_depth, num_of_class, min_acc):
     mini= dict()
     for k in mydict.keys():
         count= count+1
-        one, zero=SeperateDataIntoOne_Zero(mydict[k])
+        one, zero=sperate_data_into_zero_one(mydict[k])
         print ("Node: %s, zero: %d and one: %d"%(k, zero, one)) 
         if (one >=num_of_class and zero >=num_of_class):
             R=pd.DataFrame(mydict[k])
@@ -451,7 +451,7 @@ def WangTree(pathTrain, pathTest, tree_depth, num_of_class, min_acc):
     print result
     final_result=list()
     for w in result:
-        if len(w) !=0:
+        if len(w) !=0:Change the method in the code
             final_result.append(w)
     #pred=Ensemble_Pred(final_result+ razorArr*(int(math.ceil(len(final_result)*0.9))))
     
@@ -459,7 +459,7 @@ def WangTree(pathTrain, pathTest, tree_depth, num_of_class, min_acc):
     print tempArr
     print ("\n")
     print" The worst performing model: %.2f%% \n The best performing model: %.2f%%"%( min(tempArr)*100, max(tempArr)*100)
-    pred=Ensemble_Pred(razorArr)
+    pred=ensemble_pred(razorArr)
     print" The number of models: %.2d" %( len(tempArr))
     
     
@@ -491,7 +491,7 @@ def WangTree(pathTrain, pathTest, tree_depth, num_of_class, min_acc):
         for model2 in tempArr:
             tryArr.append(mini[str(model1)])
             tryArr.append(mini[str(model2)])
-            pred=Ensemble_Pred(tryArr)
+            pred=ensemble_pred(tryArr)
             acc = accuracy_score(y_test, pred)
             #acc= acc*100
             #print acc
@@ -517,7 +517,7 @@ def WangTree(pathTrain, pathTest, tree_depth, num_of_class, min_acc):
     
 if __name__=="__main__":
     
-     WangTree("/home/deola/Documents/Autism/Autism_with_header_converted_to_bin1.csv",
+     wang_tree("deola/Documents/Autism/Autism_with_header_converted_to_bin1.csv",
               "/home/deola/Documents/Autism/Autism_with_header_converted_to_bin_test.csv", 3, 140, 50)
      #WangTree("/home/deola/Documents/Autism/test_dat.csv", 3, 20 )
      #Array_of_estimator(8)
